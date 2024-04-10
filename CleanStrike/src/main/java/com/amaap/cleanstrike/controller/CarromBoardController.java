@@ -5,6 +5,7 @@ import com.amaap.cleanstrike.controller.dto.Response;
 import com.amaap.cleanstrike.domain.model.CarromBoard;
 import com.amaap.cleanstrike.domain.model.exception.InvalidCarromBoardDataException;
 import com.amaap.cleanstrike.service.CarromBoardService;
+import com.amaap.cleanstrike.service.exception.CarromBoardNotFoundException;
 
 public class CarromBoardController {
     CarromBoardService carromBoardService;
@@ -22,5 +23,9 @@ public class CarromBoardController {
         {
             return new Response(HttpStatus.BAD_REQUEST,exception.getMessage());
         }
+    }
+
+    public CarromBoard get(int id) throws CarromBoardNotFoundException {
+        return carromBoardService.get(id);
     }
 }

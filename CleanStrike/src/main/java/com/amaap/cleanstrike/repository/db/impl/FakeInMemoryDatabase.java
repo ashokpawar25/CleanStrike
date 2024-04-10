@@ -37,4 +37,13 @@ public class FakeInMemoryDatabase implements InMemoryDatabase {
         carromBoards.add(carromBoard);
         return carromBoard;
     }
+
+    @Override
+    public CarromBoard selectFromCarromBoardTable(int id) {
+        for(CarromBoard carromBoard:carromBoards)
+        {
+            if(carromBoard.getId()==id) return carromBoard;
+        }
+        return null;
+    }
 }

@@ -15,4 +15,9 @@ public class InMemoryCarromBoardRepository implements CarromBoardRepository {
     public CarromBoard insert(int numberOfBlackCoins, int numberOfRedCoins) throws InvalidCarromBoardDataException {
         return inMemoryDatabase.insertIntoCarromBoardTable(numberOfBlackCoins,numberOfRedCoins);
     }
+
+    @Override
+    public CarromBoard select(int id) {
+        return inMemoryDatabase.selectFromCarromBoardTable(id);
+    }
 }

@@ -4,9 +4,7 @@ import com.amaap.cleanstrike.controller.dto.HttpStatus;
 import com.amaap.cleanstrike.controller.dto.Response;
 import com.amaap.cleanstrike.domain.model.Player;
 import com.amaap.cleanstrike.service.PlayerService;
-import com.amaap.cleanstrike.service.exception.InvalidPlayerIdException;
-
-import java.util.ArrayList;
+import com.amaap.cleanstrike.service.exception.PlayerNotFoundException;
 
 public class PlayerController {
     PlayerService playerService;
@@ -21,7 +19,7 @@ public class PlayerController {
     }
 
 
-    public Player get(int id) throws InvalidPlayerIdException {
+    public Player get(int id) throws PlayerNotFoundException {
         return playerService.get(id);
     }
 }

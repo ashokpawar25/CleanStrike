@@ -29,6 +29,10 @@ public class CarromBoard {
         return new CarromBoard(id,numberOfBlackCoins,numberOfRedCoins);
     }
 
+    public int getId() {
+        return id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

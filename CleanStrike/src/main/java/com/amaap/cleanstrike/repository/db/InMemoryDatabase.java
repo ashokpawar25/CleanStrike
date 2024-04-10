@@ -10,4 +10,6 @@ public interface InMemoryDatabase {
     Player selectFromPlayerTable(int id);
 
     CarromBoard insertIntoCarromBoardTable(int numberOfBlackCoins, int numberOfRedCoins) throws InvalidCarromBoardDataException;
+
+    CarromBoard selectFromCarromBoardTable(int id);
 }

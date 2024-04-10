@@ -1,11 +1,8 @@
 package com.amaap.cleanstrike.service;
 
 import com.amaap.cleanstrike.domain.model.Player;
-import com.amaap.cleanstrike.domain.model.Strikes;
 import com.amaap.cleanstrike.repository.PlayerRepository;
-import com.amaap.cleanstrike.service.exception.InvalidPlayerIdException;
-
-import java.util.ArrayList;
+import com.amaap.cleanstrike.service.exception.PlayerNotFoundException;
 
 public class PlayerService {
     PlayerRepository playerRepository;
@@ -17,9 +14,9 @@ public class PlayerService {
         return playerRepository.add();
     }
 
-    public Player get(int id) throws InvalidPlayerIdException {
+    public Player get(int id) throws PlayerNotFoundException {
         Player player = playerRepository.getPlayer(id);
-        if (player == null) throw new InvalidPlayerIdException("Player with [id:"+id+"] not found");
+        if (player == null) throw new PlayerNotFoundException("Player with [id:"+id+"] not found");
         return player;
     }
 }

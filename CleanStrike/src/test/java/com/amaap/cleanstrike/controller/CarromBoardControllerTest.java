@@ -11,6 +11,7 @@ import com.amaap.cleanstrike.repository.db.impl.FakeInMemoryDatabase;
 import com.amaap.cleanstrike.repository.impl.InMemoryCarromBoardRepository;
 import com.amaap.cleanstrike.repository.impl.InMemoryPlayerRepository;
 import com.amaap.cleanstrike.service.CarromBoardService;
+import com.amaap.cleanstrike.service.exception.CarromBoardNotFoundException;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -30,6 +31,22 @@ public class CarromBoardControllerTest {
 
         // act
         Response actual = carromBoardController.create(9,1);
+
+        // assert
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    void shouldBeAbleToGetCarromBoardById() throws CarromBoardNotFoundException {
+        // arrange
+        int id = 1;
+        int numberOfBlackCoins=9;
+        int numberOfRedCoins=1;
+        CarromBoard expected = new CarromBoard(id,numberOfBlackCoins,numberOfRedCoins);
+
+        // act
+        carromBoardController.create(numberOfBlackCoins,numberOfRedCoins);
+        CarromBoard actual = carromBoardController.get(id);
 
         // assert
         assertEquals(expected,actual);
