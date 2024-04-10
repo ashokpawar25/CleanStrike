@@ -13,7 +13,7 @@ class ResponseTest {
         Response response1 = new Response(HttpStatus.Ok,"First response");
         Response response2 = new Response(HttpStatus.Ok,"First response");
         Response response3 = new Response(HttpStatus.Ok,"second response");
-        Response response4 = new Response(HttpStatus.BADREQUEST,"First response");
+        Response response4 = new Response(HttpStatus.BAD_REQUEST,"First response");
         Object object = new Object();
 
         // assert

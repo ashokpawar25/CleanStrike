@@ -15,4 +15,8 @@ public class PlayerService {
     public Player create() {
         return playerRepository.add();
     }
+
+    public Player get(int id) {
+        return playerRepository.getPlayer(id);
+    }
 }

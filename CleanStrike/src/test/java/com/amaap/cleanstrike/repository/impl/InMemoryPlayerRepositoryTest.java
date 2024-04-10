@@ -32,4 +32,21 @@ class InMemoryPlayerRepositoryTest {
         assertEquals(expected,actual);
     }
 
+    @Test
+    void shouldBeAbleToGetPlayerById()
+    {
+        // arrange
+        int id = 1;
+        int points = 0;
+        List<Strikes> strikes = new ArrayList<>();
+        Player expected = new Player(id,points,strikes);
+        inMemoryPlayerRepository.add();
+
+        // act
+        Player actual = inMemoryPlayerRepository.getPlayer(1);
+
+        // assert
+        assertEquals(expected,actual);
+    }
+
 }

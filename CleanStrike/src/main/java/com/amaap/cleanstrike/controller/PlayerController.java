@@ -5,6 +5,8 @@ import com.amaap.cleanstrike.controller.dto.Response;
 import com.amaap.cleanstrike.domain.model.Player;
 import com.amaap.cleanstrike.service.PlayerService;
 
+import java.util.ArrayList;
+
 public class PlayerController {
     PlayerService playerService;
 
@@ -13,6 +15,12 @@ public class PlayerController {
     }
 
     public Response create() {
+        playerService.create();
         return new Response(HttpStatus.Ok,"Player created successfully");
+    }
+
+
+    public Player get(int id) {
+        return playerService.get(id);
     }
 }

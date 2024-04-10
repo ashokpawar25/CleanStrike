@@ -14,4 +14,9 @@ public class InMemoryPlayerRepository implements PlayerRepository {
     public Player add() {
         return inMemoryDatabase.insertIntoPlayerTable();
     }
+
+    @Override
+    public Player getPlayer(int id) {
+        return inMemoryDatabase.selectFromPlayerTable(id);
+    }
 }

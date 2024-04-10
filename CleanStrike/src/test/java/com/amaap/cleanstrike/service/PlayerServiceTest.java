@@ -34,4 +34,21 @@ class PlayerServiceTest {
         assertEquals(expected,actual);
     }
 
+    @Test
+    void shouldBeAbleToGetPlayerById()
+    {
+        // arrange
+        int id = 1;
+        int points = 0;
+        List<Strikes> strikes = new ArrayList<>();
+        Player expected = new Player(id,points,strikes);
+        playerService.create();
+
+        // act
+        Player actual = playerService.get(1);
+
+        // assert
+        assertEquals(expected,actual);
+    }
+
 }

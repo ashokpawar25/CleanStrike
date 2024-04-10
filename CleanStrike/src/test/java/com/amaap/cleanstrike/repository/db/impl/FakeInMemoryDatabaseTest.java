@@ -27,4 +27,21 @@ class FakeInMemoryDatabaseTest {
         // assert
         assertEquals(expected,actual);
     }
+
+    @Test
+    void shouldBeAbleToGetPlayerById()
+    {
+        // arrange
+        int id = 1;
+        int points = 0;
+        List<Strikes> strikes = new ArrayList<>();
+        Player expected = new Player(id,points,strikes);
+        fakeInMemoryDatabase.insertIntoPlayerTable();
+
+        // act
+        Player actual = fakeInMemoryDatabase.selectFromPlayerTable(id);
+
+        // assert
+        assertEquals(expected,actual);
+    }
 }

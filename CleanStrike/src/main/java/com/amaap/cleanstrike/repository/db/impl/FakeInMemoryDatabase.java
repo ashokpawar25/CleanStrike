@@ -16,4 +16,13 @@ public class FakeInMemoryDatabase implements InMemoryDatabase {
         players.add(player);
         return player;
     }
+
+    @Override
+    public Player selectFromPlayerTable(int id) {
+        for(Player player:players)
+        {
+            if(player.getId()== id) return player;
+        }
+        return null;
+    }
 }
