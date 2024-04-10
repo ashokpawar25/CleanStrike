@@ -5,6 +5,7 @@ import com.amaap.cleanstrike.domain.model.exception.InvalidCarromBoardIdExceptio
 import com.amaap.cleanstrike.domain.model.exception.InvalideNumberOfCoinsException;
 import com.amaap.cleanstrike.domain.model.validator.CarromBoardValidator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,6 +19,7 @@ public class CarromBoard {
         this.id = id;
         this.numberOfBlackCoins = numberOfBlackCoins;
         this.numberOfRedCoins = numberOfRedCoins;
+        this.players = new ArrayList<>();
     }
 
     public static CarromBoard create(int id, int numberOfBlackCoins, int numberOfRedCoins)
@@ -31,6 +33,14 @@ public class CarromBoard {
 
     public int getId() {
         return id;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players.addAll(players);
     }
 
     @Override

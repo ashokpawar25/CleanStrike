@@ -7,17 +7,21 @@ public class Player {
     private final int id;
     private int points;
     private List<Strikes> strikes;
-    private  boolean isPlaying;
+    private  boolean isAlreadyPlaying;
 
     public Player(int id, int points, List<Strikes> strikes) {
         this.id = id;
         this.points = points;
         this.strikes = strikes;
-        this.isPlaying = false;
+        this.isAlreadyPlaying = false;
     }
 
     public int getId() {
         return id;
+    }
+
+    public boolean isAlreadyPlaying() {
+        return isAlreadyPlaying;
     }
 
     @Override

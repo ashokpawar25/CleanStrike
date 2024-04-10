@@ -7,6 +7,7 @@ import com.amaap.cleanstrike.domain.model.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FakeInMemoryDatabase implements InMemoryDatabase {
     List<Player> players = new ArrayList<>();
