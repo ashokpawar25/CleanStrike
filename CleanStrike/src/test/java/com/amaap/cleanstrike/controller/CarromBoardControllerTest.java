@@ -4,6 +4,8 @@ import com.amaap.cleanstrike.controller.dto.HttpStatus;
 import com.amaap.cleanstrike.controller.dto.Response;
 import com.amaap.cleanstrike.domain.model.CarromBoard;
 import com.amaap.cleanstrike.domain.model.Player;
+import com.amaap.cleanstrike.domain.model.exception.InvalidCarromBoardIdException;
+import com.amaap.cleanstrike.domain.model.exception.InvalideNumberOfCoinsException;
 import com.amaap.cleanstrike.repository.CarromBoardRepository;
 import com.amaap.cleanstrike.repository.db.InMemoryDatabase;
 import com.amaap.cleanstrike.repository.db.impl.FakeInMemoryDatabase;
@@ -17,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CarromBoardControllerTest {
 
@@ -38,6 +41,19 @@ public class CarromBoardControllerTest {
     }
 
     @Test
+    void shouldBeAbleToGetResponseAsBadRequestWhenInvalidInputsProvided()
+    {
+        // arrange
+        Response expected = new Response(HttpStatus.BAD_REQUEST,"Invalid number of coins");
+
+        // act
+        Response actual = carromBoardController.create(-9,0);
+
+        // assert
+        assertEquals(expected,actual);
+    }
+
+    @Test
     void shouldBeAbleToGetCarromBoardById() throws CarromBoardNotFoundException {
         // arrange
         int id = 1;
@@ -51,6 +67,19 @@ public class CarromBoardControllerTest {
 
         // assert
         assertEquals(expected,actual);
+    }
+
+    @Test
+    void shouldThrowCarromBoardNotFoundExceptionWhenCarromBoardIsNotPresentInDatabase(){
+        // arrange
+        int id = 1;
+        int numberOfBlackCoins=9;
+        int numberOfRedCoins=1;
+        // act
+        carromBoardController.create(numberOfBlackCoins,numberOfRedCoins);
+
+        // assert
+        assertThrows(CarromBoardNotFoundException.class,()->carromBoardController.get(2));
     }
 
     @Test

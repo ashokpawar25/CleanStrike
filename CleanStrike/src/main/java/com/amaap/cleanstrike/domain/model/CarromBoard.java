@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static com.amaap.cleanstrike.domain.model.validator.CarromBoardValidator.isInvalidNumbersOfCoin;
+
 public class CarromBoard {
 
     private final int id;
@@ -26,7 +28,7 @@ public class CarromBoard {
             throws InvalidCarromBoardDataException {
         if(CarromBoardValidator.isInvalidId(id))
             throw new InvalidCarromBoardIdException("Invalid carrom board id "+id);
-        if(CarromBoardValidator.isInvalideNumebersOfCoin(numberOfBlackCoins,numberOfRedCoins))
+        if(isInvalidNumbersOfCoin(numberOfBlackCoins,numberOfRedCoins))
             throw new InvalideNumberOfCoinsException("Invalid number of coins");
         return new CarromBoard(id,numberOfBlackCoins,numberOfRedCoins);
     }

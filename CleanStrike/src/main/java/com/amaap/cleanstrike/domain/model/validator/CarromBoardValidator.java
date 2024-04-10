@@ -6,8 +6,8 @@ public class CarromBoardValidator {
         return false;
     }
 
-    public static boolean isInvalideNumebersOfCoin(int numberOfBlackCoins, int numberOfRedCoins) {
-        if(numberOfBlackCoins <= 0 && numberOfRedCoins <= 0) return true;
+    public static boolean isInvalidNumbersOfCoin(int numberOfBlackCoins, int numberOfRedCoins) {
+        if(numberOfBlackCoins <= 0 || numberOfRedCoins <= 0) return true;
         return false;
     }
 }
