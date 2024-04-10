@@ -20,6 +20,26 @@ public class Player {
         return id;
     }
 
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public List<Strikes> getStrikes() {
+        return strikes;
+    }
+
+    public void setStrikes(List<Strikes> strikes) {
+        this.strikes = strikes;
+    }
+
+    public void setAlreadyPlaying(boolean alreadyPlaying) {
+        isAlreadyPlaying = alreadyPlaying;
+    }
+
     public boolean isAlreadyPlaying() {
         return isAlreadyPlaying;
     }

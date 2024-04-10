@@ -39,6 +39,22 @@ public class CarromBoard {
         return players;
     }
 
+    public int getNumberOfBlackCoins() {
+        return numberOfBlackCoins;
+    }
+
+    public int getNumberOfRedCoins() {
+        return numberOfRedCoins;
+    }
+
+    public void setNumberOfBlackCoins(int numberOfBlackCoins) {
+        this.numberOfBlackCoins = numberOfBlackCoins;
+    }
+
+    public void setNumberOfRedCoins(int numberOfRedCoins) {
+        this.numberOfRedCoins = numberOfRedCoins;
+    }
+
     public void setPlayers(List<Player> players) {
         this.players.addAll(players);
     }

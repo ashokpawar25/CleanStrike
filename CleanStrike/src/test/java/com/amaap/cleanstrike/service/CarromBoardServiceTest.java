@@ -2,11 +2,13 @@ package com.amaap.cleanstrike.service;
 
 import com.amaap.cleanstrike.controller.CarromBoardController;
 import com.amaap.cleanstrike.domain.model.CarromBoard;
+import com.amaap.cleanstrike.domain.model.Player;
 import com.amaap.cleanstrike.domain.model.exception.InvalidCarromBoardDataException;
 import com.amaap.cleanstrike.repository.CarromBoardRepository;
 import com.amaap.cleanstrike.repository.db.InMemoryDatabase;
 import com.amaap.cleanstrike.repository.db.impl.FakeInMemoryDatabase;
 import com.amaap.cleanstrike.repository.impl.InMemoryCarromBoardRepository;
+import com.amaap.cleanstrike.repository.impl.InMemoryPlayerRepository;
 import com.amaap.cleanstrike.service.exception.CarromBoardNotFoundException;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class CarromBoardServiceTest {
     InMemoryDatabase inMemoryDatabase = new FakeInMemoryDatabase();
     CarromBoardRepository carromBoardRepository = new InMemoryCarromBoardRepository(inMemoryDatabase);
-    CarromBoardService carromBoardService = new CarromBoardService(carromBoardRepository);
+    PlayerService playerService = new PlayerService(new InMemoryPlayerRepository(new FakeInMemoryDatabase()));
+    CarromBoardService carromBoardService = new CarromBoardService(carromBoardRepository,playerService);
     @Test
     void shouldBeAbleToCreateCarromBoard() throws InvalidCarromBoardDataException {
         // arrange

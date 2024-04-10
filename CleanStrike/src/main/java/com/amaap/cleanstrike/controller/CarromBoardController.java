@@ -47,4 +47,8 @@ public class CarromBoardController {
             return new Response(HttpStatus.BAD_REQUEST, exception.getMessage());
         }
     }
+
+    public void winnerEvaluator(int carromBoardId) throws CarromBoardNotFoundException {
+        carromBoardService.winnerEvaluator(carromBoardId);
+    }
 }
