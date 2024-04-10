@@ -7,11 +7,13 @@ public class Player {
     private final int id;
     private int points;
     private List<Strikes> strikes;
+    private  boolean isPlaying;
 
     public Player(int id, int points, List<Strikes> strikes) {
         this.id = id;
         this.points = points;
         this.strikes = strikes;
+        this.isPlaying = false;
     }
 
     public int getId() {

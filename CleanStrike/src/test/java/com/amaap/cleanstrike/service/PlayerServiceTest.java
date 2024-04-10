@@ -6,6 +6,7 @@ import com.amaap.cleanstrike.domain.model.Strikes;
 import com.amaap.cleanstrike.repository.PlayerRepository;
 import com.amaap.cleanstrike.repository.db.impl.FakeInMemoryDatabase;
 import com.amaap.cleanstrike.repository.impl.InMemoryPlayerRepository;
+import com.amaap.cleanstrike.service.exception.InvalidPlayerIdException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -35,8 +36,7 @@ class PlayerServiceTest {
     }
 
     @Test
-    void shouldBeAbleToGetPlayerById()
-    {
+    void shouldBeAbleToGetPlayerById() throws InvalidPlayerIdException {
         // arrange
         int id = 1;
         int points = 0;
