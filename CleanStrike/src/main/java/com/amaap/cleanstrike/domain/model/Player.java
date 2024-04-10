@@ -21,9 +21,4 @@ public class Player {
         Player player = (Player) o;
         return id == player.id && points == player.points && Objects.equals(strikes, player.strikes);
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, points, strikes);
-    }
 }

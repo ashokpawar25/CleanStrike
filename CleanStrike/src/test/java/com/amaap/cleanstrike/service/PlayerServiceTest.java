@@ -1,32 +1,37 @@
-package com.amaap.cleanstrike.controller;
+package com.amaap.cleanstrike.service;
 
 import com.amaap.cleanstrike.repository.db.InMemoryDatabase;
-import com.amaap.cleanstrike.controller.dto.HttpStatus;
-import com.amaap.cleanstrike.controller.dto.Response;
+import com.amaap.cleanstrike.domain.model.Player;
+import com.amaap.cleanstrike.domain.model.Strikes;
 import com.amaap.cleanstrike.repository.PlayerRepository;
 import com.amaap.cleanstrike.repository.db.impl.FakeInMemoryDatabase;
 import com.amaap.cleanstrike.repository.impl.InMemoryPlayerRepository;
-import com.amaap.cleanstrike.service.PlayerService;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.ArrayList;
+import java.util.List;
 
-public class PlayerControllerTest {
+import static org.junit.jupiter.api.Assertions.*;
+
+class PlayerServiceTest {
     InMemoryDatabase inMemoryDatabase = new FakeInMemoryDatabase();
+
     PlayerRepository playerRepository = new InMemoryPlayerRepository(inMemoryDatabase);
     PlayerService playerService = new PlayerService(playerRepository);
-    PlayerController playerController = new PlayerController(playerService);
-
     @Test
     void shouldBeAbleToCreatePlayer()
     {
         // arrange
-        Response expected = new Response(HttpStatus.Ok,"Player created successfully");
+        int id = 1;
+        int points = 0;
+        List<Strikes> strikes = new ArrayList<>();
+        Player expected = new Player(id,points,strikes);
 
         // act
-        Response actual = playerController.create();
+        Player actual = playerService.create();
 
         // assert
         assertEquals(expected,actual);
     }
+
 }
