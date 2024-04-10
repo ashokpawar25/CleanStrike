@@ -1,7 +1,9 @@
 package com.amaap.cleanstrike.repository.db.impl;
 
+import com.amaap.cleanstrike.domain.model.CarromBoard;
 import com.amaap.cleanstrike.domain.model.Player;
 import com.amaap.cleanstrike.domain.model.Strikes;
+import com.amaap.cleanstrike.domain.model.exception.InvalidCarromBoardDataException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -40,6 +42,21 @@ class FakeInMemoryDatabaseTest {
 
         // act
         Player actual = fakeInMemoryDatabase.selectFromPlayerTable(id);
+
+        // assert
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    void shouldBeAbleToCreateCarromBoard() throws InvalidCarromBoardDataException {
+        // arrange
+        int id = 1;
+        int numberOfBlackCoins=9;
+        int numberOfRedCoins=1;
+        CarromBoard expected = new CarromBoard(id,numberOfBlackCoins,numberOfRedCoins);
+
+        // act
+        CarromBoard actual = fakeInMemoryDatabase.insertIntoCarromBoardTable(numberOfBlackCoins,numberOfRedCoins);
 
         // assert
         assertEquals(expected,actual);

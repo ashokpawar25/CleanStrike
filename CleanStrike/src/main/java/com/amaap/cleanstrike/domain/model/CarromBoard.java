@@ -2,6 +2,7 @@ package com.amaap.cleanstrike.domain.model;
 
 import com.amaap.cleanstrike.domain.model.exception.InvalidCarromBoardDataException;
 import com.amaap.cleanstrike.domain.model.exception.InvalidCarromBoardIdException;
+import com.amaap.cleanstrike.domain.model.exception.InvalideNumberOfCoinsException;
 import com.amaap.cleanstrike.domain.model.validator.CarromBoardValidator;
 
 import java.util.List;
@@ -19,8 +20,12 @@ public class CarromBoard {
         this.numberOfRedCoins = numberOfRedCoins;
     }
 
-    public static CarromBoard create(int id, int numberOfBlackCoins, int numberOfRedCoins) throws InvalidCarromBoardDataException {
-        if(CarromBoardValidator.isInvalidId(id)) throw new InvalidCarromBoardIdException("Invalid carrom board id "+id);
+    public static CarromBoard create(int id, int numberOfBlackCoins, int numberOfRedCoins)
+            throws InvalidCarromBoardDataException {
+        if(CarromBoardValidator.isInvalidId(id))
+            throw new InvalidCarromBoardIdException("Invalid carrom board id "+id);
+        if(CarromBoardValidator.isInvalideNumebersOfCoin(numberOfBlackCoins,numberOfRedCoins))
+            throw new InvalideNumberOfCoinsException("Invalid number of coins");
         return new CarromBoard(id,numberOfBlackCoins,numberOfRedCoins);
     }
 

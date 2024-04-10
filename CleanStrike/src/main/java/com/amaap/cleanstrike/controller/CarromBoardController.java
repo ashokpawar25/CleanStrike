@@ -1,5 +1,7 @@
 package com.amaap.cleanstrike.controller;
 
+import com.amaap.cleanstrike.controller.dto.HttpStatus;
+import com.amaap.cleanstrike.controller.dto.Response;
 import com.amaap.cleanstrike.domain.model.CarromBoard;
 import com.amaap.cleanstrike.domain.model.exception.InvalidCarromBoardDataException;
 import com.amaap.cleanstrike.service.CarromBoardService;
@@ -11,7 +13,14 @@ public class CarromBoardController {
         this.carromBoardService = carromBoardService;
     }
 
-    public CarromBoard create(int numberOfBlackCoins, int numberOfRedCoins) throws InvalidCarromBoardDataException {
-        return carromBoardService.create(numberOfBlackCoins,numberOfRedCoins);
+    public Response create(int numberOfBlackCoins, int numberOfRedCoins) {
+        try {
+            carromBoardService.create(numberOfBlackCoins,numberOfRedCoins);
+            return new Response(HttpStatus.Ok,"Carrom board created Successfully");
+        }
+        catch (InvalidCarromBoardDataException exception)
+        {
+            return new Response(HttpStatus.BAD_REQUEST,exception.getMessage());
+        }
     }
 }
