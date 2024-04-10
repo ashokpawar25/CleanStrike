@@ -102,6 +102,26 @@ public class CarromBoardControllerTest {
     }
 
     @Test
+    void shouldBeAbleToGetBadRequestAsResponseWhenTryToAssignAlreadyPlayingPlayerToCarromBoard() {
+        // arrange
+        int numberOfBlackCoins=9;
+        int numberOfRedCoins=1;
+        int carromBoardId = 1;
+        Response expected = new Response(HttpStatus.BAD_REQUEST,"Player with [id:1] is already playing");
+
+        // act
+        carromBoardController.create(numberOfBlackCoins,numberOfRedCoins);
+        Player player1 = playerService.create();
+        Player player2 = playerService.create();
+        player1.setAlreadyPlaying(true);
+        List<Player> players = List.of(player1,player2);
+        Response actual = carromBoardController.assignPlayers(players,carromBoardId);
+
+        // assert
+        assertEquals(expected,actual);
+    }
+
+    @Test
     void shouldBeAbleToGetWinnerOfGame() throws CarromBoardNotFoundException {
         // arrange
         int numberOfBlackCoins=9;
