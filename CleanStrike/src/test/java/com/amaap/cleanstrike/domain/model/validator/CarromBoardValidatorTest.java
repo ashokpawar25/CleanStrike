@@ -9,6 +9,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class CarromBoardValidatorTest {
 
     @Test
+    void shouldBeAbleToCreateInstanceOfClass()
+    {
+        // arrange
+        CarromBoardValidator validator = new CarromBoardValidator();
+
+        // assert
+        assertNotNull(validator);
+    }
+
+    @Test
     void shouldBeAbleToValidateIdForCarromBoard()
     {
         assertTrue(isInvalidId(0));
@@ -17,14 +27,13 @@ class CarromBoardValidatorTest {
     }
 
     @Test
-    void shouldBeAbleToValidateNumberOfCoinsForCarromBoard()
-    {
-        assertTrue(isInvalidNumbersOfCoin(0,4));
-        assertTrue(isInvalidNumbersOfCoin(4,0));
-        assertTrue(isInvalidNumbersOfCoin(5,-1));
-        assertTrue(isInvalidNumbersOfCoin(-3,4));
-        assertTrue(isInvalidNumbersOfCoin(-7,-4));
-        assertFalse(isInvalidNumbersOfCoin(9,1));
+    void shouldBeAbleToValidateNumberOfCoinsForCarromBoard() {
+        assertTrue(isInvalidNumbersOfCoin(0, 4));
+        assertTrue(isInvalidNumbersOfCoin(4, 0));
+        assertTrue(isInvalidNumbersOfCoin(5, -1));
+        assertTrue(isInvalidNumbersOfCoin(-3, 4));
+        assertTrue(isInvalidNumbersOfCoin(-7, -4));
+        assertFalse(isInvalidNumbersOfCoin(9, 1));
 
     }
 

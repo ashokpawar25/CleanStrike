@@ -156,19 +156,4 @@ public class CarromBoardControllerTest {
         carromBoardController.winnerEvaluator(carromBoardId);
     }
 
-    @Test
-    void shouldBeAbleToCheckEqualityOfInstances()
-    {
-        CarromBoard carromBoard1 = new CarromBoard(1,9,1);
-        CarromBoard carromBoard2 = new CarromBoard(1,9,1);
-        CarromBoard carromBoard3 = new CarromBoard(1,8,2);
-        Object object = new Object();
-
-        assertTrue(carromBoard1.equals(carromBoard1));
-        assertTrue(carromBoard1.equals(carromBoard2));
-        assertFalse(carromBoard1.equals(object));
-        assertFalse(carromBoard1.equals(null));
-        assertFalse(carromBoard1.equals(carromBoard3));
-
-    }
 }

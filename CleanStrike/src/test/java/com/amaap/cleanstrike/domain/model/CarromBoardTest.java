@@ -40,5 +40,22 @@ class CarromBoardTest {
         assertThrows(InvalideNumberOfCoinsException.class,()->CarromBoard.create(1,-1,0));
     }
 
+    @Test
+    void shouldBeAbleToCheckEqualityOfInstances()
+    {
+        CarromBoard carromBoard1 = new CarromBoard(1,9,1);
+        CarromBoard carromBoard2 = new CarromBoard(1,9,1);
+        CarromBoard carromBoard3 = new CarromBoard(1,9,2);
+        CarromBoard carromBoard4 = new CarromBoard(1,7,2);
+        CarromBoard carromBoard5 = new CarromBoard(2,7,2);
+        Object object = new Object();
 
+        assertTrue(carromBoard1.equals(carromBoard1));
+        assertTrue(carromBoard1.equals(carromBoard2));
+        assertFalse(carromBoard1.equals(object));
+        assertFalse(carromBoard1.equals(null));
+        assertFalse(carromBoard1.equals(carromBoard3));
+        assertFalse(carromBoard3.equals(carromBoard4));
+        assertFalse(carromBoard4.equals(carromBoard5));
+    }
 }
