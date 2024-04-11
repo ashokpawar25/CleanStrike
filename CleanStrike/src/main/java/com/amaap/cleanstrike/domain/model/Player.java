@@ -1,19 +1,33 @@
 package com.amaap.cleanstrike.domain.model;
 
+import com.amaap.cleanstrike.domain.model.exception.InvalidPlayerIdException;
+import com.amaap.cleanstrike.domain.model.exception.InvalidePlayerPointsException;
+import com.amaap.cleanstrike.domain.model.validator.PlayerValidator;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import static com.amaap.cleanstrike.domain.model.validator.PlayerValidator.isInvalidId;
+import static com.amaap.cleanstrike.domain.model.validator.PlayerValidator.isInvalidPoints;
 
 public class Player {
     private final int id;
     private int points;
     private List<Strikes> strikes;
-    private  boolean isAlreadyPlaying;
+    private boolean isAlreadyPlaying;
 
-    public Player(int id, int points, List<Strikes> strikes) {
+    public Player(int id, int points) {
         this.id = id;
         this.points = points;
-        this.strikes = strikes;
+        this.strikes = new ArrayList<>();
         this.isAlreadyPlaying = false;
+    }
+
+    public static Player create(int id, int points) throws InvalidPlayerIdException, InvalidePlayerPointsException {
+        if(isInvalidId(id)) throw new InvalidPlayerIdException("Invalid player id "+id);
+        if(isInvalidPoints(points)) throw new InvalidePlayerPointsException("Points should be greater than 0");
+        return new Player(id,points);
     }
 
     public int getId() {
@@ -26,14 +40,6 @@ public class Player {
 
     public void setPoints(int points) {
         this.points = points;
-    }
-
-    public List<Strikes> getStrikes() {
-        return strikes;
-    }
-
-    public void setStrikes(List<Strikes> strikes) {
-        this.strikes = strikes;
     }
 
     public void setAlreadyPlaying(boolean alreadyPlaying) {

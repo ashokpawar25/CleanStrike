@@ -22,8 +22,7 @@ class InMemoryPlayerRepositoryTest {
         // arrange
         int id = 1;
         int points = 0;
-        List<Strikes> strikes = new ArrayList<>();
-        Player expected = new Player(id,points,strikes);
+        Player expected = new Player(id,points);
 
         // act
         Player actual = inMemoryPlayerRepository.add();
@@ -38,8 +37,7 @@ class InMemoryPlayerRepositoryTest {
         // arrange
         int id = 1;
         int points = 0;
-        List<Strikes> strikes = new ArrayList<>();
-        Player expected = new Player(id,points,strikes);
+        Player expected = new Player(id,points);
         inMemoryPlayerRepository.add();
 
         // act

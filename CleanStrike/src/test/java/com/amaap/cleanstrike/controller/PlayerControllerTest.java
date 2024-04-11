@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class PlayerControllerTest {
     InMemoryDatabase inMemoryDatabase = new FakeInMemoryDatabase();
@@ -41,8 +42,7 @@ public class PlayerControllerTest {
         // arrange
         int id = 1;
         int points = 0;
-        List<Strikes> strikes = new ArrayList<>();
-        Player expected = new Player(id,points,strikes);
+        Player expected = new Player(id,points);
         playerController.create();
 
         // act
@@ -50,5 +50,10 @@ public class PlayerControllerTest {
 
         // assert
         assertEquals(expected,actual);
+    }
+
+    @Test
+    void shouldBeThrowPlayerNotFoundExceptionWhenPlayerIsNotPresentInDatabase() {
+        assertThrows(PlayerNotFoundException.class,()->playerController.get(1));
     }
 }

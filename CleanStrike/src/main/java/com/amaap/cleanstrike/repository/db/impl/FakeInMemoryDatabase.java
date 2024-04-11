@@ -16,7 +16,7 @@ public class FakeInMemoryDatabase implements InMemoryDatabase {
     int carromBoardIdCounter=1;
     @Override
     public Player insertIntoPlayerTable() {
-        Player player = new Player(playerIdCounter,0,new ArrayList<>());
+        Player player = new Player(playerIdCounter,0);
         playerIdCounter++;
         players.add(player);
         return player;

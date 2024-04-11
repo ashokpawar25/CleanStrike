@@ -25,8 +25,7 @@ class PlayerServiceTest {
         // arrange
         int id = 1;
         int points = 0;
-        List<Strikes> strikes = new ArrayList<>();
-        Player expected = new Player(id,points,strikes);
+        Player expected = new Player(id,points);
 
         // act
         Player actual = playerService.create();
@@ -40,8 +39,7 @@ class PlayerServiceTest {
         // arrange
         int id = 1;
         int points = 0;
-        List<Strikes> strikes = new ArrayList<>();
-        Player expected = new Player(id,points,strikes);
+        Player expected = new Player(id,points);
         playerService.create();
 
         // act

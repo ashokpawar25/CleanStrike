@@ -4,6 +4,7 @@ import com.amaap.cleanstrike.controller.dto.HttpStatus;
 import com.amaap.cleanstrike.controller.dto.Response;
 import com.amaap.cleanstrike.domain.model.CarromBoard;
 import com.amaap.cleanstrike.domain.model.Player;
+import com.amaap.cleanstrike.domain.model.exception.InvalidCarromBoardDataException;
 import com.amaap.cleanstrike.domain.model.exception.InvalidCarromBoardIdException;
 import com.amaap.cleanstrike.domain.model.exception.InvalideNumberOfCoinsException;
 import com.amaap.cleanstrike.repository.CarromBoardRepository;
@@ -18,8 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CarromBoardControllerTest {
 
@@ -122,6 +122,30 @@ public class CarromBoardControllerTest {
     }
 
     @Test
+    void shouldBeAbleToGetBadRequestAsResponseWhenTryToAssignPlayerToInvalidCarromBoard() {
+        // arrange
+        int numberOfBlackCoins=9;
+        int numberOfRedCoins=1;
+        int carromBoardId = 2;
+        Response expected = new Response(HttpStatus.BAD_REQUEST,"Carrom board not found");
+
+        // act
+        carromBoardController.create(numberOfBlackCoins,numberOfRedCoins);
+        Player player1 = playerService.create();
+        Player player2 = playerService.create();
+        List<Player> players = List.of(player1,player2);
+        Response actual = carromBoardController.assignPlayers(players,carromBoardId);
+
+        // assert
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    void shouldBeAbleToThrowInvalidCarromBoardExceptionWhenInvalidIdIsPassed(){
+        assertThrows(InvalidCarromBoardIdException.class,()->CarromBoard.create(-1,9,1));
+    }
+
+    @Test
     void shouldBeAbleToGetWinnerOfGame() throws CarromBoardNotFoundException {
         // arrange
         int numberOfBlackCoins=9;
@@ -135,5 +159,21 @@ public class CarromBoardControllerTest {
         List<Player> players = List.of(player1,player2);
         carromBoardController.assignPlayers(players,carromBoardId);
         carromBoardController.winnerEvaluator(carromBoardId);
+    }
+
+    @Test
+    void shouldBeAbleToCheckEqualityOfInstances()
+    {
+        CarromBoard carromBoard1 = new CarromBoard(1,9,1);
+        CarromBoard carromBoard2 = new CarromBoard(1,9,1);
+        CarromBoard carromBoard3 = new CarromBoard(1,8,2);
+        Object object = new Object();
+
+        assertTrue(carromBoard1.equals(carromBoard1));
+        assertTrue(carromBoard1.equals(carromBoard2));
+        assertFalse(carromBoard1.equals(object));
+        assertFalse(carromBoard1.equals(null));
+        assertFalse(carromBoard1.equals(carromBoard3));
+
     }
 }
