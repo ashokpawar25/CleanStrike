@@ -18,7 +18,7 @@ class CarromBoardServiceTest {
     CarromBoardRepository carromBoardRepository = new InMemoryCarromBoardRepository(inMemoryDatabase);
     PlayerService playerService = new PlayerService(new InMemoryPlayerRepository(new FakeInMemoryDatabase()));
     WinnerEvaluator winnerEvaluator = new WinnerEvaluator(playerService);
-    CarromBoardService carromBoardService = new CarromBoardService(carromBoardRepository,playerService, winnerEvaluator);
+    CarromBoardService carromBoardService = new CarromBoardService(carromBoardRepository, winnerEvaluator);
     @Test
     void shouldBeAbleToCreateCarromBoard() throws InvalidCarromBoardDataException {
         // arrange

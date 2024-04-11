@@ -28,7 +28,7 @@ public class CarromBoardControllerTest {
     CarromBoardRepository carromBoardRepository = new InMemoryCarromBoardRepository(inMemoryDatabase);
     PlayerService playerService = new PlayerService(new InMemoryPlayerRepository(new FakeInMemoryDatabase()));
     WinnerEvaluator winnerEvaluator = new WinnerEvaluator(playerService);
-    CarromBoardService carromBoardService = new CarromBoardService(carromBoardRepository,playerService,winnerEvaluator);
+    CarromBoardService carromBoardService = new CarromBoardService(carromBoardRepository,winnerEvaluator);
     CarromBoardController carromBoardController = new CarromBoardController(carromBoardService);
     @Test
     void shouldBeAbleToCreateCarromBoard(){
@@ -155,7 +155,10 @@ public class CarromBoardControllerTest {
         Player player2 = playerService.create();
         List<Player> players = List.of(player1,player2);
         carromBoardController.assignPlayers(players,carromBoardId);
-        carromBoardController.winnerEvaluator(carromBoardId);
+        Player winningplayer = carromBoardController.winnerEvaluator(carromBoardId);
+
+        // assert
+//        assertEquals(player1,winningplayer);
     }
 
 }

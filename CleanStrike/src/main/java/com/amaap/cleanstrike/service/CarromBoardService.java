@@ -12,10 +12,8 @@ import java.util.List;
 
 public class CarromBoardService {
     private CarromBoardRepository carromBoardRepository;
-    private PlayerService playerService;
     private WinnerEvaluator winnerEvaluator;
-    public CarromBoardService(CarromBoardRepository carromBoardRepository, PlayerService playerService, WinnerEvaluator winnerEvaluator) {
-        this.playerService = playerService;
+    public CarromBoardService(CarromBoardRepository carromBoardRepository, WinnerEvaluator winnerEvaluator) {
         this.carromBoardRepository = carromBoardRepository;
         this.winnerEvaluator=winnerEvaluator;
     }
@@ -39,10 +37,17 @@ public class CarromBoardService {
         carromBoard.setPlayers(players);
     }
 
-    public void winnerEvaluator(int carromBoardId) throws CarromBoardNotFoundException {
+    public Player winnerEvaluator(int carromBoardId) throws CarromBoardNotFoundException {
         CarromBoard carromBoard = this.get(carromBoardId);
         Player winningPlayer = winnerEvaluator.evaluateWinner(carromBoard);
-        if(winningPlayer==null) System.out.println("Game draw");
-        else System.out.println("Player having Id :"+winningPlayer.getId()+" is winner");
+        if(winningPlayer==null)
+        {
+            System.out.println("Game draw");
+            return null;
+        }
+        else{
+            System.out.println("Player having Id :"+winningPlayer.getId()+" is winner");
+            return winningPlayer;
+        }
     }
 }

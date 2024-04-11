@@ -48,7 +48,7 @@ public class CarromBoardController {
         }
     }
 
-    public void winnerEvaluator(int carromBoardId) throws CarromBoardNotFoundException {
-        carromBoardService.winnerEvaluator(carromBoardId);
+    public Player winnerEvaluator(int carromBoardId) throws CarromBoardNotFoundException {
+        return carromBoardService.winnerEvaluator(carromBoardId);
     }
 }
