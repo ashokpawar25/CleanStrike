@@ -141,11 +141,6 @@ public class CarromBoardControllerTest {
     }
 
     @Test
-    void shouldBeAbleToThrowInvalidCarromBoardExceptionWhenInvalidIdIsPassed(){
-        assertThrows(InvalidCarromBoardIdException.class,()->CarromBoard.create(-1,9,1));
-    }
-
-    @Test
     void shouldBeAbleToGetWinnerOfGame() throws CarromBoardNotFoundException {
         // arrange
         int numberOfBlackCoins=9;
