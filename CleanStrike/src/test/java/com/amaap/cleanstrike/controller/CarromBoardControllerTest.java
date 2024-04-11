@@ -155,10 +155,10 @@ public class CarromBoardControllerTest {
         Player player2 = playerService.create();
         List<Player> players = List.of(player1,player2);
         carromBoardController.assignPlayers(players,carromBoardId);
-        Player winningplayer = carromBoardController.winnerEvaluator(carromBoardId);
+        Player winningPlayer = carromBoardController.winnerEvaluator(carromBoardId);
 
         // assert
-//        assertEquals(player1,winningplayer);
+//        assertEquals(player1,winningPlayer);
     }
 
 }
