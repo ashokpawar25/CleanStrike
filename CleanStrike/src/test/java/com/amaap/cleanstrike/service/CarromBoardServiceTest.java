@@ -1,9 +1,8 @@
 package com.amaap.cleanstrike.service;
 
-import com.amaap.cleanstrike.controller.CarromBoardController;
 import com.amaap.cleanstrike.domain.model.CarromBoard;
-import com.amaap.cleanstrike.domain.model.Player;
 import com.amaap.cleanstrike.domain.model.exception.InvalidCarromBoardDataException;
+import com.amaap.cleanstrike.domain.service.WinnerEvaluator;
 import com.amaap.cleanstrike.repository.CarromBoardRepository;
 import com.amaap.cleanstrike.repository.db.InMemoryDatabase;
 import com.amaap.cleanstrike.repository.db.impl.FakeInMemoryDatabase;
@@ -18,7 +17,8 @@ class CarromBoardServiceTest {
     InMemoryDatabase inMemoryDatabase = new FakeInMemoryDatabase();
     CarromBoardRepository carromBoardRepository = new InMemoryCarromBoardRepository(inMemoryDatabase);
     PlayerService playerService = new PlayerService(new InMemoryPlayerRepository(new FakeInMemoryDatabase()));
-    CarromBoardService carromBoardService = new CarromBoardService(carromBoardRepository,playerService);
+    WinnerEvaluator winnerEvaluator = new WinnerEvaluator(playerService);
+    CarromBoardService carromBoardService = new CarromBoardService(carromBoardRepository,playerService, winnerEvaluator);
     @Test
     void shouldBeAbleToCreateCarromBoard() throws InvalidCarromBoardDataException {
         // arrange
